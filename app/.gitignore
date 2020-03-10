@@ -1,0 +1,8 @@
+/build
+/.idea
+/bin
+/gen
+/out
+
+/.gradle
+/gradle
