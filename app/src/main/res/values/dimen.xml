@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="largeLato">30sp</dimen>
+    <dimen name="mediumLato">18sp</dimen>
+    <dimen name="smallLato">15sp</dimen>
+</resources>
