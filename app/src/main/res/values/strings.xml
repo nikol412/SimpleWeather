@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Simply Weather</string>
+    <string name="switch_city_label">Сменить город</string>
+    <string name="my_location_label">Мое местоположение</string>
 </resources>

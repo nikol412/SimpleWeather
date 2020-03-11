@@ -8,4 +8,18 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="NormalText">
+        <item name="android:textSize">@dimen/mediumLato</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="SmallText" parent="NormalText">
+        <item name="android:textSize">@dimen/smallLato</item>
+        <item name="android:alpha">0.6</item>
+    </style>
+
+    <style name="LargeText" parent="NormalText">
+        <item name="android:textSize">@dimen/largeLato</item>
+    </style>
+
 </resources>

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import ru.nikol.simplyweather.databinding.OverviewFragmentBinding
 
 
 class OverviewFragment : Fragment() {
@@ -20,7 +21,10 @@ class OverviewFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.overview_fragment, container, false)
+        viewModel = ViewModelProviders.of(this).get(OverviewViewModel::class.java)
+        val binding = OverviewFragmentBinding.inflate(inflater, container, false)
+        binding.overviewVM = this.viewModel
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
