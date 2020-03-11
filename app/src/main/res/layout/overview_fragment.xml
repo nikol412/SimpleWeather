@@ -70,7 +70,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="100dp"
-        android:text="+27"
+        android:text="@{OverviewVM.degrees}"
         android:textColor="@android:color/white"
         android:textSize="70sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
@@ -83,7 +83,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:text="5 м/с, западный"
+        android:text="@{OverviewVM.WindSize}"
         style="@style/NormalText"
         app:layout_constraintStart_toStartOf="@+id/wind_label"
         app:layout_constraintTop_toBottomOf="@+id/wind_label" />
@@ -104,7 +104,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:text="0%"
+        android:text="@{OverviewVM.humidity}"
         style="@style/NormalText"
         app:layout_constraintStart_toStartOf="@+id/humidity_label"
         app:layout_constraintTop_toBottomOf="@+id/humidity_label" />
@@ -125,7 +125,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:text="700 мм.рт.ст"
+        android:text="@{OverviewVM.pressureSize}"
         style="@style/NormalText"
         app:layout_constraintStart_toStartOf="@+id/pressure_label"
         app:layout_constraintTop_toBottomOf="@+id/pressure_label" />
@@ -135,7 +135,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:text="110%"
+        android:text="@{OverviewVM.rain}"
         style="@style/NormalText"
         app:layout_constraintStart_toStartOf="@+id/chance_of_rain_label"
         app:layout_constraintTop_toBottomOf="@+id/chance_of_rain_label" />
