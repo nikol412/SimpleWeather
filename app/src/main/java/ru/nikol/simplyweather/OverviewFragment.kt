@@ -24,6 +24,8 @@ class OverviewFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(OverviewViewModel::class.java)
         val binding = OverviewFragmentBinding.inflate(inflater, container, false)
         binding.overviewVM = this.viewModel
+        viewModel.getWeather()
+
         return binding.root
     }
 
