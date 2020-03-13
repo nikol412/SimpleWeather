@@ -23,7 +23,9 @@ class OverviewFragment : Fragment() {
     ): View? {
         viewModel = ViewModelProviders.of(this).get(OverviewViewModel::class.java)
         val binding = OverviewFragmentBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = this
         binding.overviewVM = this.viewModel
+        //binding.overviewVM?.degrees = "1111"
         viewModel.getWeather()
 
         return binding.root

@@ -1,6 +1,7 @@
 package ru.nikol.simplyweather
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import retrofit2.Call
 import retrofit2.Callback
@@ -10,18 +11,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 class OverviewViewModel : ViewModel() {
-    var city = "Омск"
-    var degrees = ""
-    var windSize = "123 м/с, эльфийский"
-    var pressureSize = "302 мм.рт.ст."
-    var humidity = "-20%"
-    var rain = "120%"
-//    private val weatherAPI by lazy {
-//        WeatherAPI.create()
-//    }
-    init {
-
-    }
+    var city:MutableLiveData<String> = MutableLiveData<String>()
+    var degrees:MutableLiveData<String> = MutableLiveData<String>()
+    var windSize: MutableLiveData<String> = MutableLiveData<String>()
+    var pressureSize: MutableLiveData<String> = MutableLiveData<String>()
+    var humidity : MutableLiveData<String> = MutableLiveData<String>()
+    var rain : MutableLiveData<String> = MutableLiveData<String>()
 
     fun getWeather(){
         val BASE_URL = "https://samples.openweathermap.org/"
@@ -40,8 +35,14 @@ class OverviewViewModel : ViewModel() {
                  call: Call<CurrentWeather?>,
                  response: Response<CurrentWeather?>
              ) {
+                 city.value = response.body()?.name.toString()
+                 degrees.value = "${(response.body()?.mainInfo?.temp?.minus(273)?.toInt()).toString()}°"
+                 windSize.value =  "${response.body()?.wind?.speed.toString()} м/с, ${response.body()?.wind?.degrees.toString()}"
+                 pressureSize.value = "${response.body()?.mainInfo?.pressure.toString()} мм.рт.ст"
+                 humidity.value = "${response.body()?.mainInfo?.humidity?.toInt().toString()}%"
+                 rain.value = "${response.body()?.clouds?.all.toString()}%"
 
-                 Log.d("retrofit2 onResponse", "${response.body()?.wind} \n ${response.body()?.mainInfo?.temp}\"")
+                     Log.d("retrofit2 onResponse", "${response.body()}")
              }
 
          })
