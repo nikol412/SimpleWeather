@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import ru.nikol.simplyweather.databinding.OverviewFragmentBinding
 
 
@@ -22,14 +24,16 @@ class OverviewFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         viewModel = ViewModelProviders.of(this).get(OverviewViewModel::class.java)
-        viewModel.db = WeatherDB(this.context!!)
+        GlobalScope.launch {
+            viewModel.db = WeatherDB(context!!)
+        }
         val binding = OverviewFragmentBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.overviewVM = this.viewModel
         //binding.overviewVM?.degrees = "1111"
 
-        viewModel.getWeather()
         viewModel.getCashedWeather(this.context!!)
+        viewModel.getWeather()
 
         return binding.root
     }

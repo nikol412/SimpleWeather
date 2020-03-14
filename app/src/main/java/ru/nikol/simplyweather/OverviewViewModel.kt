@@ -51,7 +51,7 @@ class OverviewViewModel : ViewModel() {
 
                  Log.d("retrofit2 onResponse", "${response.body()}")
 
-                 val weatherEnt = WeatherEntity(id = 1, city = response.body()?.name.toString(),
+                 val weatherEnt = WeatherEntity(id = 0, city = response.body()?.name.toString(),
                      temp = response.body()?.mainInfo?.temp?.minus(273)?.toInt()!!, windSpeed = response.body()?.wind?.speed!!,
                      windDegrees = response.body()?.wind?.degrees!!, pressure = response.body()?.mainInfo?.pressure!!, humidity = response.body()?.mainInfo?.humidity!!,
                      rain = response.body()?.clouds?.all!!)
@@ -72,13 +72,17 @@ class OverviewViewModel : ViewModel() {
             val data = db.weatherDao().getLast()
             if(data != (null)) {
                 data.let {
-                    city.value = it.city
-                    humidity.value = it.humidity.toString()
-                    pressureSize.value = it.pressure.toString()
-                    rain.value = it.rain.toString()
-                    degrees.value = it.windDegrees.toString()
-                    windSize.value = it.windSpeed.toString()
+                    city.postValue(it.city)
+                    humidity.postValue(it.humidity.toString())
+                    pressureSize.postValue(it.pressure.toString())
+                    rain.postValue(it.rain.toString())
+                    degrees.postValue(it.temp.toString())
+                    degrees.postValue(it.windDegrees.toString())
+                    windSize.postValue(it.windSpeed.toString())
                 }
+                    var testEntity = db.weatherDao().getLast()
+                    Log.d("Room", "Test: ${testEntity.temp} ${testEntity.city} ${testEntity.humidity}")
+
             }
 
         }
