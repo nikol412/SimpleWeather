@@ -22,11 +22,14 @@ class OverviewFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         viewModel = ViewModelProviders.of(this).get(OverviewViewModel::class.java)
+        viewModel.db = WeatherDB(this.context!!)
         val binding = OverviewFragmentBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.overviewVM = this.viewModel
         //binding.overviewVM?.degrees = "1111"
+
         viewModel.getWeather()
+        viewModel.getCashedWeather(this.context!!)
 
         return binding.root
     }
@@ -36,5 +39,6 @@ class OverviewFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(OverviewViewModel::class.java)
 
     }
+
 
 }

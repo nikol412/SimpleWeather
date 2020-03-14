@@ -21,4 +21,7 @@ interface WeatherDAO {
 
     @Query("DELETE FROM weather_items")
     fun deleteAll()
+
+    @Query("SELECT * FROM weather_items order by id desc limit 1")
+    fun getLast():WeatherEntity
 }

@@ -1,8 +1,11 @@
 package ru.nikol.simplyweather
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -17,6 +20,10 @@ class OverviewViewModel : ViewModel() {
     var pressureSize: MutableLiveData<String> = MutableLiveData<String>()
     var humidity : MutableLiveData<String> = MutableLiveData<String>()
     var rain : MutableLiveData<String> = MutableLiveData<String>()
+
+    lateinit var db: WeatherDB
+
+
 
     fun getWeather(){
         val BASE_URL = "https://samples.openweathermap.org/"
@@ -42,9 +49,39 @@ class OverviewViewModel : ViewModel() {
                  humidity.value = "${response.body()?.mainInfo?.humidity?.toInt().toString()}%"
                  rain.value = "${response.body()?.clouds?.all.toString()}%"
 
-                     Log.d("retrofit2 onResponse", "${response.body()}")
+                 Log.d("retrofit2 onResponse", "${response.body()}")
+
+                 val weatherEnt = WeatherEntity(id = 1, city = response.body()?.name.toString(),
+                     temp = response.body()?.mainInfo?.temp?.minus(273)?.toInt()!!, windSpeed = response.body()?.wind?.speed!!,
+                     windDegrees = response.body()?.wind?.degrees!!, pressure = response.body()?.mainInfo?.pressure!!, humidity = response.body()?.mainInfo?.humidity!!,
+                     rain = response.body()?.clouds?.all!!)
+                 var testEntity:WeatherEntity
+                 GlobalScope.launch {
+                     db.weatherDao().insertAll(weatherEnt)
+                     testEntity = db.weatherDao().getLast()
+                     Log.d("Room", "Test: ${testEntity.temp} ${testEntity.city} ${testEntity.humidity}")
+                 }
+
              }
 
          })
     }
+
+    fun getCashedWeather(context: Context) {
+        GlobalScope.launch {
+            val data = db.weatherDao().getLast()
+            if(data != (null)) {
+                data.let {
+                    city.value = it.city
+                    humidity.value = it.humidity.toString()
+                    pressureSize.value = it.pressure.toString()
+                    rain.value = it.rain.toString()
+                    degrees.value = it.windDegrees.toString()
+                    windSize.value = it.windSpeed.toString()
+                }
+            }
+
+        }
+    }
+
 }
