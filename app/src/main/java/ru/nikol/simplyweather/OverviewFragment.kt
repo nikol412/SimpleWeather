@@ -30,6 +30,7 @@ class OverviewFragment : Fragment() {
         val binding = OverviewFragmentBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.overviewVM = this.viewModel
+        viewModel.image.value = R.drawable.sun
         //binding.overviewVM?.degrees = "1111"
 
         viewModel.getCashedWeather(this.context!!)

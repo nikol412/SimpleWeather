@@ -13,5 +13,6 @@ data class WeatherEntity(
     @ColumnInfo(name = "windDegrees") var windDegrees: Int,
     @ColumnInfo(name = "pressure") var pressure: Int,
     @ColumnInfo(name = "humidity") var humidity: Double,
-    @ColumnInfo(name = "rain") var rain: Double
+    @ColumnInfo(name = "rain") var rain: Double,
+    @ColumnInfo(name = "image") var img: Int
 )

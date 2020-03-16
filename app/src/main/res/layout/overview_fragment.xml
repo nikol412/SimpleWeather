@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
             name="OverviewVM"
             type="ru.nikol.simplyweather.OverviewViewModel" />
     </data>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
@@ -56,8 +56,8 @@
         android:adjustViewBounds="false"
         android:cropToPadding="false"
         android:scaleType="centerInside"
-
-        android:src="@drawable/rain"
+        android:src="@{OverviewVM.image}"
+        app:imageResource="@{OverviewVM.image}"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/weather_label"
         app:layout_constraintHorizontal_bias="0.5"
@@ -111,14 +111,14 @@
 
     <TextView
         android:id="@+id/chance_of_rain_label"
+        style="@style/SmallText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="41dp"
+        android:layout_marginStart="2dp"
         android:layout_marginBottom="65dp"
         android:text="Вероятность дождя"
-        style="@style/SmallText"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/pressure_label" />
 
     <TextView
         android:id="@+id/pressure_size_label"
