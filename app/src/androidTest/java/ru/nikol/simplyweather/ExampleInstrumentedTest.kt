@@ -10,6 +10,9 @@ import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import ru.nikol.simplyweather.db.WeatherDAO
+import ru.nikol.simplyweather.db.WeatherDB
+import ru.nikol.simplyweather.db.WeatherEntity
 import java.io.IOException
 
 /**
@@ -48,7 +51,17 @@ class ExampleInstrumentedTest {
         @Test
         @Throws(Exception::class)
         fun writeUserAndReadInList() {
-            val weatherEntity: WeatherEntity = WeatherEntity(city = "Omsk", humidity = 1.0, id = 1, pressure = 1, rain = 2.0, windDegrees = 3, windSpeed = 4.1, temp = 432)
+            val weatherEntity: WeatherEntity =
+                WeatherEntity(
+                    city = "Omsk",
+                    humidity = 1.0,
+                    id = 1,
+                    pressure = 1,
+                    rain = 2.0,
+                    windDegrees = 3,
+                    windSpeed = 4.1,
+                    temp = 432
+                )
             weatherDao.insertAll(weatherEntity)
             val weatherItem = weatherDao.findByCity("Omsk")
             //assertThat(arrayListOf(weatherItem), equalTo(weatherEntity))

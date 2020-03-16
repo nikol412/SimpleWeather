@@ -1,4 +1,4 @@
-package ru.nikol.simplyweather
+package ru.nikol.simplyweather.db
 
 import androidx.room.Dao
 import androidx.room.Delete
@@ -23,5 +23,5 @@ interface WeatherDAO {
     fun deleteAll()
 
     @Query("SELECT * FROM weather_items order by id desc limit 1")
-    fun getLast():WeatherEntity
+    fun getLast(): WeatherEntity
 }

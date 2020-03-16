@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProviders
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import ru.nikol.simplyweather.databinding.OverviewFragmentBinding
+import ru.nikol.simplyweather.db.WeatherDB
 
 
 class OverviewFragment : Fragment() {
@@ -31,9 +32,8 @@ class OverviewFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.overviewVM = this.viewModel
         viewModel.image.value = R.drawable.sun
-        //binding.overviewVM?.degrees = "1111"
 
-        viewModel.getCashedWeather(this.context!!)
+        viewModel.getCashedWeather()
         viewModel.getWeather()
 
         return binding.root

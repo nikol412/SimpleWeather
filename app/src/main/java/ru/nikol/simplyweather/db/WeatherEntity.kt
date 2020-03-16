@@ -1,8 +1,9 @@
-package ru.nikol.simplyweather
+package ru.nikol.simplyweather.db
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+
 @Entity(tableName = "weather_items")
 data class WeatherEntity(
     @PrimaryKey(autoGenerate = true)

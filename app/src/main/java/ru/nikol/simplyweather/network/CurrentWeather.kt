@@ -1,4 +1,4 @@
-package ru.nikol.simplyweather
+package ru.nikol.simplyweather.network
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
@@ -59,90 +59,91 @@ data class Coords(
     val lon: Double,
     @SerializedName("userId")
     @Expose
-    val lat:Double
+    val lat: Double
 )
 
 data class Weather(
     @SerializedName("id")
     @Expose
-    val id:Int = 0,
+    val id: Int = 0,
 
     @SerializedName("main")
     @Expose
-    val mainInfo:String = "",
+    val mainInfo: String = "",
 
     @SerializedName("description")
     @Expose
-    val description:String = "",
+    val description: String = "",
 
     @SerializedName("icon")
     @Expose
-    val icon:String = ""
+    val icon: String = ""
 )
 
 data class MainInf(
     @SerializedName("temp")
     @Expose
-    val temp:Double,
+    val temp: Double,
 
     @SerializedName("feels_like")
     @Expose
-    val tempFeelsLike:Double,
+    val tempFeelsLike: Double,
 
     @SerializedName("temp_min")
     @Expose
-    val tempMin:Double,
+    val tempMin: Double,
 
     @SerializedName("temp_max")
     @Expose
-    val tempMax:Double,
+    val tempMax: Double,
 
     @SerializedName("pressure")
     @Expose
-    val pressure:Int,
+    val pressure: Int,
 
     @SerializedName("humidity")
     @Expose
-    val humidity:Double
+    val humidity: Double
 )
 
 data class Wind(
     @SerializedName("speed")
     @Expose
-    val speed:Double,
+    val speed: Double,
 
     @SerializedName("deg")
     @Expose
-    val degrees:Int
+    val degrees: Int
 )
+
 data class Clouds(
     @SerializedName("all")
     @Expose
-    val all:Double
+    val all: Double
 )
 
 data class Sys(
     @SerializedName("type")
     @Expose
-    val type:Int,
+    val type: Int,
 
     @SerializedName("id")
     @Expose
-    val id:Int,
+    val id: Int,
 
     @SerializedName("message")
     @Expose
-    val message:Double,
+    val message: Double,
 
     @SerializedName("country")
     @Expose
-    val country:String = "",
+    val country: String = "",
 
     @SerializedName("sunrise")
     @Expose
-    val sunrise:Long,
+    val sunrise: Long,
 
     @SerializedName("sunset")
     @Expose
-    val sunset:Long
+    val sunset: Long
 )
